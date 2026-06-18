@@ -1,0 +1,19 @@
+name: "@foundrynet/cyber-intel"
+displayName: "Cybersecurity Threat Intelligence MCP"
+description: >-
+  Cybersecurity threat intelligence for AI agents — CVE search, vulnerability
+  database, EPSS exploit prediction, CISA known-exploited (KEV) status, IP
+  reputation, domain threat indicators, and a real-time threat feed. Built on NVD,
+  CISA KEV, EPSS, GitHub Advisories, AbuseIPDB, and AlienVault OTX. Part of the
+  FoundryNet Data Network. Free tier then x402 (USDC on Solana).
+startCommand:
+  type: http
+  url: "https://cyber-intel-mcp-production.up.railway.app/mcp"
+  transport: streamable-http
+  configSchema:
+    type: object
+    properties:
+      api_key:
+        type: string
+        title: "Forge billing key (optional)"
+        description: "fnet_ key to bypass the per-query x402 paywall and bill to a Forge account."

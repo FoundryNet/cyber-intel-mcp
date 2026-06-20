@@ -1,11 +1,38 @@
-name: "@foundrynet/cyber-intel"
-displayName: "Cybersecurity Threat Intelligence MCP"
+name: "@foundrynet/cyber-intel-mcp"
+displayName: "FoundryNet Cyber Intelligence"
 description: >-
-  Cybersecurity threat intelligence for AI agents — CVE search, vulnerability
-  database, EPSS exploit prediction, CISA known-exploited (KEV) status, IP
-  reputation, domain threat indicators, and a real-time threat feed. Built on NVD,
-  CISA KEV, EPSS, GitHub Advisories, AbuseIPDB, and AlienVault OTX. Part of the
-  FoundryNet Data Network. Free tier then x402 (USDC on Solana).
+  CVE vulnerability search with EPSS exploit prediction, CISA KEV tracking, IP reputation checking, and GitHub advisory monitoring.
+icon: "🛡️"
+homepage: "https://foundrynet.io"
+repository: "https://github.com/FoundryNet/cyber-intel-mcp"
+license: "MIT"
+categories:
+  - security
+  - data
+  - devops
+tags:
+  - cve-search
+  - vulnerability-database
+  - threat-intelligence
+  - epss
+  - cisa-kev
+  - security-scanning
+  - ip-reputation
+keywords:
+  - cve-search
+  - vulnerability-database
+  - threat-intelligence
+  - epss
+  - cisa-kev
+  - security-scanning
+  - ip-reputation
+attestation:
+  protocol: "MINT Protocol"
+  verified_outputs: true
+  live_feed: "https://mint.foundrynet.io/feed"
+network:
+  name: "FoundryNet Data Network"
+  servers: 17
 startCommand:
   type: http
   url: "https://cyber-intel-mcp-production.up.railway.app/mcp"

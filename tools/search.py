@@ -18,9 +18,10 @@ def register(mcp) -> None:
         agent_id: Optional[str] = None,
         payment_tx: Optional[str] = None,
     ) -> dict:
-        """Search CVEs (vulnerability database) by keyword, CVSS severity/score,
-        EPSS exploit likelihood, attack vector, recency, or KEV status. Returns
-        CVSS, EPSS, KEV flag, and affected products, newest first.
+        """Search CVEs in the vulnerability database by keyword, CVSS severity/score,
+        EPSS exploit-prediction likelihood, attack vector, recency, or CISA KEV
+        status. Returns CVSS, EPSS, KEV flag, and affected products, newest first.
+        Threat intel from NVD, EPSS, CISA KEV, and GHSA.
 
         PAID: $0.01 USDC per query after a daily free allowance (25/day). On a 402,
         pay the returned Solana memo and re-call with the SAME args plus

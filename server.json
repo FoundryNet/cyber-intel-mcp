@@ -2,8 +2,12 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.FoundryNet/cyber-intel-mcp",
   "title": "Cybersecurity Threat Intelligence MCP",
-  "description": "CVE search, vulnerability database, EPSS exploit prediction, KEV, IP reputation & threat feed.",
+  "description": "Search CVEs with EPSS exploit-prediction and CISA KEV status, check IP/domain reputation, and run vulnerability scans — threat intel from NVD, CISA, EPSS, GHSA, AbuseIPDB, and OTX.",
   "version": "1.0.0",
+  "homepage": "https://foundrynet.io",
   "repository": { "url": "https://github.com/FoundryNet/cyber-intel-mcp", "source": "github" },
+  "categories": ["security", "cybersecurity", "data", "threat-intelligence"],
+  "tags": ["CVE search", "vulnerability database", "threat intelligence", "IP reputation", "security scanning", "EPSS", "exploit prediction", "CISA KEV"],
+  "keywords": ["CVE search", "vulnerability database", "threat intelligence", "IP reputation", "security scanning", "EPSS", "exploit prediction", "CISA KEV"],
   "remotes": [ { "type": "streamable-http", "url": "https://cyber-intel-mcp-production.up.railway.app/mcp" } ]
 }

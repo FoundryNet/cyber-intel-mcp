@@ -14,8 +14,9 @@ def register(mcp) -> None:
         agent_id: Optional[str] = None,
         payment_tx: Optional[str] = None,
     ) -> dict:
-        """Recent threat indicators — the real-time threat-intel feed (IPs, domains,
-        hashes, URLs) from AlienVault OTX pulses + reputation checks, filterable.
+        """Pull the recent threat-intelligence feed — real-time threat indicators
+        (IPs, domains, hashes, URLs) from AlienVault OTX pulses and reputation
+        checks, filterable by type, threat, confidence, and recency.
 
         PAID: $0.01 USDC per query after the daily free allowance (25/day). On a
         402, pay the returned Solana memo and re-call with the SAME args plus

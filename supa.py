@@ -43,6 +43,18 @@ async def rpc(fn: str, body: dict):
                               timeout=config.REQUEST_TIMEOUT)
 
 
+async def upsert(table: str, rows: list, on_conflict: str) -> dict:
+    if not configured() or not rows:
+        return {"data": []}
+    r = await request_json("POST", _url(table),
+                           headers=_headers({"Prefer": "resolution=merge-duplicates,return=minimal"}),
+                           params={"on_conflict": on_conflict},
+                           body=rows, timeout=max(config.REQUEST_TIMEOUT, 60))
+    if isinstance(r, dict) and r.get("error"):
+        return r
+    return {"data": rows}
+
+
 async def _bulk_upsert(table: str, rows: list, on_conflict: str) -> int:
     if not configured() or not rows:
         return 0

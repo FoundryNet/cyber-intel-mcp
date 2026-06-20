@@ -11,8 +11,9 @@ def register(mcp) -> None:
         agent_id: Optional[str] = None,
         payment_tx: Optional[str] = None,
     ) -> dict:
-        """IP reputation check — abuse reports, threat type, confidence, ISP, and
-        OTX pulse associations for an IP, combining AbuseIPDB + AlienVault OTX.
+        """Check IP reputation — abuse reports, threat type, confidence, ISP, and
+        OTX pulse associations for an IP. Threat intel combining AbuseIPDB and
+        AlienVault OTX.
 
         PAID: $0.01 USDC per query after the daily free allowance (25/day). On a
         402, pay the returned Solana memo and re-call with the SAME args plus

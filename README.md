@@ -9,8 +9,21 @@ reputation and a real-time threat feed.
 > **gov-contracts-mcp**, **brand-intel-mcp**, **patent-intel-mcp**,
 > **financial-signals-mcp**, **weather-intel-mcp**, **compliance-mcp**.
 
-Live MCP endpoint (Streamable HTTP):
-`https://cyber-intel-mcp-production.up.railway.app/mcp`
+## Connect
+
+- **MCP endpoint** (Streamable HTTP): `https://cyber-intel-mcp-production.up.railway.app/mcp`
+- **Registry:** `io.github.FoundryNet/cyber-intel-mcp`
+- **Agent card:** `https://cyber-intel-mcp-production.up.railway.app/.well-known/agent-card.json`
+
+### Claude Desktop / Cursor / Claude Code
+
+```bash
+claude mcp add --transport http cyber-intel https://cyber-intel-mcp-production.up.railway.app/mcp
+```
+
+```json
+{ "mcpServers": { "cyber-intel": { "url": "https://cyber-intel-mcp-production.up.railway.app/mcp" } } }
+```
 
 ## Tools
 
@@ -42,12 +55,13 @@ Every 6 hours: **NVD** (CVEs, keyless + throttled), **EPSS** (exploit probabilit
 **AbuseIPDB** (IP reputation) + **AlienVault OTX** (IP/domain/pulse indicators).
 Stored in a standalone Supabase project.
 
-## Connect
+## Discovery
 
-Smithery: `@foundrynet/cyber-intel` · MCP registry: `io.github.FoundryNet/cyber-intel-mcp`
-
-```json
-{ "mcpServers": { "cyber-intel": { "url": "https://cyber-intel-mcp-production.up.railway.app/mcp" } } }
-```
+MCP registry: `io.github.FoundryNet/cyber-intel-mcp`
 
 Built by [FoundryNet](https://foundrynet.io) · hello@foundrynet.io
+
+## Live network activity
+
+**Live feed:** [mint.foundrynet.io/feed](https://mint.foundrynet.io/feed)  
+Real-time verified work across 13 servers and autonomous agents, anchored on Solana via [MINT Protocol](https://mint.foundrynet.io).

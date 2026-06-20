@@ -13,9 +13,10 @@ def register(mcp) -> None:
         agent_id: Optional[str] = None,
         payment_tx: Optional[str] = None,
     ) -> dict:
-        """All known vulnerabilities affecting a product/vendor/CPE, sorted by EPSS
-        (exploit likelihood) with KEV flags — the "should I be worried about this
-        dependency?" tool. Premium.
+        """Scan a product/vendor/CPE for all known vulnerabilities, sorted by EPSS
+        exploit-prediction likelihood with CISA KEV flags — the "should I be worried
+        about this dependency?" security scanning tool. Threat intel from NVD, EPSS,
+        CISA KEV, and GHSA. Premium.
 
         PAID: $0.02 USDC per query after the daily free allowance (25/day). On a
         402, pay the returned Solana memo and re-call with the SAME args plus

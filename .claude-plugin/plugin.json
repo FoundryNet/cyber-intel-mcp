@@ -1,0 +1,9 @@
+{
+  "name": "foundrynet-cyber-intelligence",
+  "version": "1.0.0",
+  "description": "CVE lookup with exploit-probability (EPSS) + CISA KEV, IP/domain threat reputation, and daily threat briefs from the FoundryNet Data Network",
+  "author": { "name": "FoundryNet Labs", "url": "https://foundrynet.io" },
+  "homepage": "https://cyber-intel-mcp-production.up.railway.app/mcp",
+  "license": "MIT",
+  "keywords": ["cve","epss","cisa-kev","threat-intelligence","security","vulnerability"]
+}

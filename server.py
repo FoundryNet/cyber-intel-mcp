@@ -65,7 +65,7 @@ async def health(request: Request) -> JSONResponse:
         "status": "ok", "service": "cyber-intel-mcp", "transport": "streamable-http",
         "network": "FoundryNet Data Network",
         "tools": ["search_cve", "cve_detail", "check_ip", "check_domain",
-                  "vulnerability_scan", "threat_feed", "daily_brief", "mint_info"],
+                  "vulnerability_scan", "threat_feed", "daily_brief", "brief_summary", "mint_info"],
         "dataset": "supabase:vulnerabilities" if supa.configured() else "unconfigured",
         "sources": "nvd + cisa_kev + epss + ghsa + abuseipdb + otx",
         "abuseipdb": "set" if config.ABUSEIPDB_API_KEY else "unset",
@@ -178,7 +178,7 @@ _TAGLINE = "Cybersecurity threat intelligence for agents — CVEs, EPSS, KEV, IP
 _DESC = ("Cybersecurity threat intelligence for agents: CVE search, vulnerability database, "
          "exploit prediction (EPSS), CISA known-exploited (KEV), IP reputation, and security "
          "scanning. CVEs enriched with exploit-likelihood scores. Part of the FoundryNet Data "
-         "Network — attest analysis with MINT Protocol; see also gov-contracts, brand-intel, "
+         "Network — every result carries verifiable provenance; see also gov-contracts, brand-intel, "
          "patent-intel, financial-signals, weather-intel, compliance.")
 _KEYWORDS = ["cybersecurity", "CVE search", "vulnerability database", "threat intelligence",
              "IP reputation", "security scanning", "exploit prediction"]
@@ -191,16 +191,17 @@ _AGENT_CARD = {
     "url": "https://cyber-intel-mcp-production.up.railway.app/mcp",
     "version": "1.0.0",
     "capabilities": {"tools": ["search_cve", "cve_detail", "check_ip", "check_domain",
-                               "vulnerability_scan", "threat_feed", "daily_brief", "mint_info"]},
+                               "vulnerability_scan", "threat_feed", "daily_brief", "brief_summary",
+                               "mint_info"]},
     "provider": {"name": "FoundryNet", "url": "https://foundrynet.io"},
     "network": "FoundryNet Data Network",
-    "attestation": {"protocol": "MINT Protocol",
-                    "endpoint": "https://mint-mcp-production.up.railway.app/mcp",
-                    "verified_outputs": True, "live_feed": "https://mint.foundrynet.io/feed", "feed_api": "https://mint-mcp-production.up.railway.app/v1/feed"},
-    "protocols": {"mcp": {"endpoint": config.PUBLIC_MCP_URL, "transport": "streamable-http", "tools_count": 8},
-                  "x402": {"supported": True, "currency": "USDC", "network": "solana"}},
-    "see_also": config.SISTER_SERVERS, "mint_protocol": config.MINT_MCP_URL,
-    "contact": "hello@foundrynet.io",
+    "attestation": {"verified_outputs": True,
+                    "provenance": "verifiable per-result provenance",
+                    "live_feed": "https://mint.foundrynet.io/feed"},
+    "protocols": {"mcp": {"endpoint": config.PUBLIC_MCP_URL, "transport": "streamable-http", "tools_count": 9},
+                  "x402": {"supported": True}},
+    "see_also": config.SISTER_SERVERS,
+    "contact": "forge@foundrynet.io",
 }
 
 
@@ -231,7 +232,7 @@ async def server_card(request: Request) -> JSONResponse:
         "serverInfo": {"name": "Cybersecurity Threat Intelligence MCP", "version": "1.0.0"},
         "authentication": {"type": "http", "scheme": "bearer",
                            "description": ("cve_detail and mint_info are free; other tools give 25 free "
-                                           "queries/day then take an fnet_ Bearer key OR x402 USDC.")},
+                                           "queries/day then take an fnet_ Bearer key OR a metered per-query payment.")},
         "tools": live, "version": "1.0", "name": "Cybersecurity Threat Intelligence MCP",
         "tagline": _TAGLINE, "description": _DESC,
         "serverUrl": config.PUBLIC_MCP_URL, "transport": "streamable-http",
@@ -241,7 +242,7 @@ async def server_card(request: Request) -> JSONResponse:
         "see_also": config.SISTER_SERVERS,
         "pricing": {"model": "metered",
                     "free_tier": f"{config.FREE_TIER_DAILY} queries/day + free cve_detail",
-                    "paid_from": f"{config.PRICE_SEARCH} USDC per query (x402)"},
+                    "paid_from": f"${config.PRICE_SEARCH} per query (metered)"},
     }, headers={"Cache-Control": "public, max-age=300"})
 
 
@@ -274,7 +275,7 @@ async def wellknown_mcp_json(request: Request) -> JSONResponse:
         "tools": names,
         "pricing": {"model": "per-query", "free_tier": True,
                     "paid_tools": [n for n in names if n not in _FREE_TOOL_NAMES]},
-        "attestation": {"enabled": True, "protocol": "MINT Protocol",
+        "attestation": {"enabled": True, "provenance": "verifiable per-result provenance",
                         "feed": "https://mint.foundrynet.io/feed"},
         "network": {"name": "FoundryNet Data Network", "servers": 17,
                     "homepage": "https://foundrynet.io"},

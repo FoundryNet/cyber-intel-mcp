@@ -16,10 +16,11 @@ from . import checkdomain as checkdomain_tool
 from . import scan as scan_tool
 from . import feed as feed_tool
 from . import daily_brief as daily_brief_tool
+from . import brief_summary as brief_summary_tool
 from . import mint as mint_tool
 
 
 def register_all(mcp) -> None:
     for m in (search_tool, detail_tool, checkip_tool, checkdomain_tool, scan_tool, feed_tool,
-              daily_brief_tool, mint_tool):
+              daily_brief_tool, brief_summary_tool, mint_tool):
         m.register(mcp)

@@ -23,9 +23,9 @@ def register(mcp) -> None:
         status. Returns CVSS, EPSS, KEV flag, and affected products, newest first.
         Threat intel from NVD, EPSS, CISA KEV, and GHSA.
 
-        PAID: $0.01 USDC per query after a daily free allowance (25/day). On a 402,
-        pay the returned Solana memo and re-call with the SAME args plus
-        payment_tx=<signature>. agent_id scopes your allowance; an Authorization:
+        PAID: $0.01 per query after a daily free allowance (25/day). On a 402,
+        settle the returned payment request and re-call with the SAME args plus
+        payment_tx=<reference>. agent_id scopes your allowance; an Authorization:
         Bearer fnet_ key bypasses it.
 
         Args:
@@ -38,7 +38,7 @@ def register(mcp) -> None:
             is_kev: true → only CISA Known-Exploited Vulnerabilities.
             limit: max rows (1-200, default 50).
             agent_id: stable id for your agent (scopes the free-tier counter).
-            payment_tx: Solana tx signature, when re-calling after a 402.
+            payment_tx: payment transaction reference, when re-calling after a 402.
         """
         filters = {"keyword": keyword, "severity": severity, "min_cvss": min_cvss,
                    "min_epss": min_epss, "attack_vector": attack_vector, "days_back": days_back,

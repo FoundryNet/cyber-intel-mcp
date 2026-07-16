@@ -15,14 +15,14 @@ def register(mcp) -> None:
         OTX pulse associations for an IP. Threat intel combining AbuseIPDB and
         AlienVault OTX.
 
-        PAID: $0.01 USDC per query after the daily free allowance (25/day). On a
-        402, pay the returned Solana memo and re-call with the SAME args plus
-        payment_tx=<signature>. An Authorization: Bearer fnet_ key bypasses it.
+        PAID: $0.01 per query after the daily free allowance (25/day). On a
+        402, settle the returned payment request and re-call with the SAME args plus
+        payment_tx=<reference>. An Authorization: Bearer fnet_ key bypasses it.
 
         Args:
             ip_address: the IPv4 address to check.
             agent_id: stable id for your agent (scopes the free-tier counter).
-            payment_tx: Solana tx signature, when re-calling after a 402.
+            payment_tx: payment transaction reference, when re-calling after a 402.
         """
         return await core.do_check_ip(ip_address, agent_key=identity.resolve_agent_key(agent_id),
                                       payment_tx=payment_tx, api_key=identity.bearer())

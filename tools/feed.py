@@ -18,9 +18,9 @@ def register(mcp) -> None:
         (IPs, domains, hashes, URLs) from AlienVault OTX pulses and reputation
         checks, filterable by type, threat, confidence, and recency.
 
-        PAID: $0.01 USDC per query after the daily free allowance (25/day). On a
-        402, pay the returned Solana memo and re-call with the SAME args plus
-        payment_tx=<signature>. An Authorization: Bearer fnet_ key bypasses it.
+        PAID: $0.01 per query after the daily free allowance (25/day). On a
+        402, settle the returned payment request and re-call with the SAME args plus
+        payment_tx=<reference>. An Authorization: Bearer fnet_ key bypasses it.
 
         Args:
             indicator_type: ip | domain | hash | url.
@@ -28,7 +28,7 @@ def register(mcp) -> None:
             min_confidence: minimum confidence 0-100.
             hours_back: only indicators seen in the last N hours.
             agent_id: stable id for your agent (scopes the free-tier counter).
-            payment_tx: Solana tx signature, when re-calling after a 402.
+            payment_tx: payment transaction reference, when re-calling after a 402.
         """
         return await core.do_threat_feed(indicator_type, threat_type, min_confidence, hours_back,
                                          agent_key=identity.resolve_agent_key(agent_id),

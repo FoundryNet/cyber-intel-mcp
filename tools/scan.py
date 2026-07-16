@@ -18,16 +18,16 @@ def register(mcp) -> None:
         about this dependency?" security scanning tool. Threat intel from NVD, EPSS,
         CISA KEV, and GHSA. Premium.
 
-        PAID: $0.02 USDC per query after the daily free allowance (25/day). On a
-        402, pay the returned Solana memo and re-call with the SAME args plus
-        payment_tx=<signature>. An Authorization: Bearer fnet_ key bypasses it.
+        PAID: $0.02 per query after the daily free allowance (25/day). On a
+        402, settle the returned payment request and re-call with the SAME args plus
+        payment_tx=<reference>. An Authorization: Bearer fnet_ key bypasses it.
 
         Args:
             product_name: product/library/software name, e.g. "log4j".
             vendor: vendor name, e.g. "apache".
             cpe: a CPE string to match exactly.
             agent_id: stable id for your agent (scopes the free-tier counter).
-            payment_tx: Solana tx signature, when re-calling after a 402.
+            payment_tx: payment transaction reference, when re-calling after a 402.
         """
         return await core.do_scan(product_name, vendor, cpe,
                                   agent_key=identity.resolve_agent_key(agent_id),

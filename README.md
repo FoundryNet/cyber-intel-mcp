@@ -4,9 +4,9 @@
 EPSS exploit-likelihood + CISA known-exploited (KEV) status, plus live IP/domain
 reputation and a real-time threat feed.
 
-> Part of the **FoundryNet Data Network**. Attest your agent's security analysis
-> with [MINT Protocol](https://mint-mcp-production.up.railway.app/mcp). See also:
-> **gov-contracts-mcp**, **brand-intel-mcp**, **patent-intel-mcp**,
+> Part of the **FoundryNet Data Network**. Every result carries verifiable
+> provenance so a buyer can confirm it was produced by this server, unaltered.
+> See also: **gov-contracts-mcp**, **brand-intel-mcp**, **patent-intel-mcp**,
 > **financial-signals-mcp**, **weather-intel-mcp**, **compliance-mcp**.
 
 ## Connect
@@ -33,13 +33,15 @@ claude mcp add --transport http cyber-intel https://cyber-intel-mcp-production.u
 | `cve_detail` | **free** | Full CVE — CVSS breakdown, EPSS, KEV, CWE, affected products, refs |
 | `check_ip` | $0.01 | IP reputation (AbuseIPDB + OTX) — abuse score, threat type, pulses |
 | `check_domain` | $0.01 | Domain threat indicators (OTX) |
-| `vulnerability_scan` | $0.02 | All CVEs for a product, **sorted by EPSS** — "should I worry about this dependency?" |
+| `vulnerability_scan` | $0.05 | All CVEs for a product, **sorted by EPSS** — "should I worry about this dependency?" |
 | `threat_feed` | $0.01 | Recent threat indicators (IPs/domains/hashes/URLs) |
-| `mint_info` | **free** | FoundryNet Data Network + MINT Protocol |
+| `brief_summary` | $0.50 | Sample of the day's curated threat brief (headline findings) |
+| `daily_brief` | $15 | Full curated daily threat brief — top exploited CVEs, KEV adds, active indicators |
+| `mint_info` | **free** | FoundryNet Data Network + provenance/attestation info |
 
-**Free tier:** 25 paid-tool queries/day per agent. Then x402: the tool returns an
-HTTP-402 with a Solana USDC payment memo — pay it, re-call with the same args plus
-`payment_tx=<signature>`. An `Authorization: Bearer fnet_…` key bypasses the paywall.
+**Free tier:** 25 paid-tool queries/day per agent. Then metered: the tool returns an
+HTTP-402 with a payment request — settle it, re-call with the same args plus
+`payment_tx=<reference>`. An `Authorization: Bearer fnet_…` key bypasses the paywall.
 
 ## The edge: EPSS-ranked vulnerabilities
 
@@ -59,9 +61,9 @@ Stored in a standalone Supabase project.
 
 MCP registry: `io.github.FoundryNet/cyber-intel-mcp`
 
-Built by [FoundryNet](https://foundrynet.io) · hello@foundrynet.io
+Built by [FoundryNet](https://foundrynet.io?utm_source=github&utm_medium=readme&utm_campaign=cyber-intel-mcp) · forge@foundrynet.io
 
 ## Live network activity
 
 **Live feed:** [mint.foundrynet.io/feed](https://mint.foundrynet.io/feed)  
-Real-time verified work across 21 servers and autonomous agents, anchored on Solana via [MINT Protocol](https://mint.foundrynet.io).
+Real-time verified work across 17 servers and autonomous agents, with verifiable provenance on every result.
